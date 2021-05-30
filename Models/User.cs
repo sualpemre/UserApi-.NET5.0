@@ -1,6 +1,5 @@
 
 using System;
-using System.Text.Json.Serialization;
 namespace UsersApi.Models
 {
     public class User
@@ -10,9 +9,8 @@ namespace UsersApi.Models
         public string FirstName{get;set;}
         public string LastName{get;set;}
         public string Email{get;set;}
-
-        [JsonIgnore]
         public string Password{get;set;}
+        public bool isAdmin{get;set;}
         public DateTime DateCreated{get;set;}
     }
 }

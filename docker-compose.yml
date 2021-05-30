@@ -1,6 +1,4 @@
 version: '3.4'
-
-
 services:
     postgresql_database:
         image: postgres:latest
@@ -22,8 +20,7 @@ services:
             - "5050:80"
         restart: "always"
         volumes:
-            - pgadmin:/root/.pgadmin
-    
+            - pgadmin:/root/.pgadmin   
 volumes:
     database-data:
     pgadmin:

@@ -1,10 +1,14 @@
-
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using UsersApi.Models;
+
 namespace UsersApi.Data
 {
-    public class IDataContext
+    public interface IDataContext
     {
-        DbSet<User> Users {get;set;}
+         DbSet<User> Users{get;set;}
+
+         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

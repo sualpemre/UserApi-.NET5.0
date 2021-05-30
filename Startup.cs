@@ -1,3 +1,4 @@
+using System.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using UsersApi.Data;
+using Microsoft.EntityFrameworkCore;
+using UsersApi.Entities;
 
 namespace UsersApi
 {
@@ -26,7 +30,10 @@ namespace UsersApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+             
+            services.AddDbContext<DataContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IDataContext>(provider => provider.GetService<DataContext>());
+            services.AddScoped<IUserEntity, UserEntity>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
